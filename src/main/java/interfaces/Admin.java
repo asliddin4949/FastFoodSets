@@ -1,17 +1,16 @@
 package interfaces;
 
 import data.Storage;
-import model.Product;
+
 import model.User;
 import service.BranchService;
 import service.OrderService;
 import service.ProductService;
 import service.UserService;
-
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Admin {
+
     public static void adminMenu(){
         System.out.println("'1' - \"Users\"  '2' - \"Add Product\"  '3' - \"Show Products\"  '0' - \"Exit\""
                          +"\n'4' - \"Add Branch\"  '5' - \"Show Branches\"  '6' - \"Show Orders\" '7' - \"Set Manager\"");

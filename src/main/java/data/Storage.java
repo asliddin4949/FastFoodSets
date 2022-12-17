@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    public static int dynamicUserId;
+
     public static List<User> users = new ArrayList<>();
     public static List<Order> orders = new ArrayList<>();
     public static List<CurrentOrder> currentOrders = new ArrayList<>();

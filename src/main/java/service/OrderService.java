@@ -30,34 +30,36 @@ public class OrderService {
         System.out.println("'1' - \"Continue\" '0' - \"End Order\"");
         Scanner scanner = new Scanner(System.in);
         int command = scanner.nextInt();
-        if(command==1){
+        if (command == 1) {
             continueOrder();
-        } else if (command==0) {
-           endOrder();
-        }else {
+        } else if (command == 0) {
+            endOrder();
+        } else {
             System.out.println("Wrong Command!");
             currentOrder();
         }
     }
-    static void  endOrder(){
-            var currentOrders = new ArrayList<>(Storage.currentOrders);
-            if(!currentOrders.isEmpty()) {
-                BigDecimal totalCost = currentOrders.stream().map(CurrentOrder::getCost).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
-                Order order = new Order(Order.currentId,
-                                        UserService.dynamicUser,
-                                        BranchService.dynamicBranch,
-                                        totalCost,
-                                        Status.IN_PROGRESS,
-                                        currentOrders);
-                Storage.orders.add(order);
-                System.out.println("Thank you for Order! Your Order will be READY soon!");
-                UserInterface.userMenu();
-            }else {
-                System.out.println("Thank you!");
-                UserInterface.userMenu();
-            }
+
+    static void endOrder() {
+        var currentOrders = new ArrayList<>(Storage.currentOrders);
+        if (!currentOrders.isEmpty()) {
+            BigDecimal totalCost = currentOrders.stream().map(CurrentOrder::getCost).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+            Order order = new Order(Order.currentId,
+                    UserService.dynamicUser,
+                    BranchService.dynamicBranch,
+                    totalCost,
+                    Status.IN_PROGRESS,
+                    currentOrders);
+            Storage.orders.add(order);
+            System.out.println("Thank you for Order! Your Order will be READY soon!");
+            UserInterface.userMenu();
+        } else {
+            System.out.println("Thank you!");
+            UserInterface.userMenu();
+        }
     }
-    static void continueOrder(){
+
+    static void continueOrder() {
         Product currentProduct = getProduct();
         if (currentProduct != null) {
             System.out.println("Enter Quantity:");
@@ -86,18 +88,18 @@ public class OrderService {
         return Storage.products.stream().filter(product -> product.getId() == id).findFirst().orElse(null);
     }
 
-    public static void showOrders(List<Order> list){
+    public static void showOrders(List<Order> list) {
         for (Order order : list) {
             System.out.println("Order ID: " + order.getOrderId()
-                               + "\nBranch: "+order.getBranch()
-                               + "\nUser: "+order.getUser()
-                               +  "\nTotal Price: "+order.getTotalPrice()
-                                + "\nStatus: "+order.getStatus()
-                                +"\n- - - - - - - - - - - - - - - - ");
+                    + "\nBranch: " + order.getBranch()
+                    + "\nUser: " + order.getUser()
+                    + "\nTotal Price: " + order.getTotalPrice()
+                    + "\nStatus: " + order.getStatus()
+                    + "\n- - - - - - - - - - - - - - - - ");
             for (CurrentOrder orderedProduct : order.getOrderedProducts()) {
-                System.out.println("Product: "+orderedProduct.getProduct()
-                                    +"\nQuantity: "+orderedProduct.getQuantity()
-                                    +"\nCost: "+orderedProduct.getCost());
+                System.out.println("Product: " + orderedProduct.getProduct()
+                        + "\nQuantity: " + orderedProduct.getQuantity()
+                        + "\nCost: " + orderedProduct.getCost());
             }
             System.out.println("* * * * * * * * * * * * * * * * * ");
         }
