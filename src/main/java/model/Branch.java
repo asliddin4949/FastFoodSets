@@ -14,28 +14,28 @@ import java.util.Scanner;
 @EqualsAndHashCode
 public class Branch implements CheckStorage<Branch> {
 
+    //********************Fields**********************
     int id;
     String name;
     String address;
 
-    public static int currentId = 0;
-    {
-        currentId++;
-    }
+
+    //*******************Behaviors******************************
     @Override
     public boolean isExist(List<Branch> list, String name) {
         var branch1 = list.stream().filter(branch -> branch.getName().equals(name)).findFirst().orElse(null);
-        return branch1!=null;
+        return branch1 != null;
     }
-    public void addBranch(){
+
+    public void addBranch() {
         System.out.println("Enter Branch Name: ");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
         Branch branch = new Branch();
-        if(branch.isExist(Storage.branches,name)){
+        if (branch.isExist(Storage.branches, name)) {
             System.out.println("This Branch Name has been added!");
             Admin.adminMenu();
-        }else {
+        } else {
             System.out.println("Enter Address:");
             scanner = new Scanner(System.in);
             String address = scanner.nextLine();
@@ -47,7 +47,8 @@ public class Branch implements CheckStorage<Branch> {
             Admin.adminMenu();
         }
     }
-    public void showBranches(){
+
+    public void showBranches() {
         Storage.branches.forEach(System.out::println);
     }
 
@@ -59,5 +60,11 @@ public class Branch implements CheckStorage<Branch> {
                 "\n- - - - - - - - - - - ";
     }
 
+    //************************Counter Branch ID*************************************
+    public static int currentId = 0;
+
+    {
+        currentId++;
+    }
 
 }

@@ -12,13 +12,13 @@ import java.util.Scanner;
 
 public class OrderService {
     public static void orderProduct() {
-        Storage.dynamicBranch.showBranches();
+        Storage.currentBranch.showBranches();
         System.out.println("Choose Branch Id :");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
         var currentBranch = Storage.branches.stream().filter(branch -> branch.getId() == id).findFirst().orElse(null);
         if (currentBranch != null) {
-            Storage.dynamicBranch = currentBranch;
+            Storage.currentBranch = currentBranch;
             currentOrder();
         } else {
             System.out.println("Wrong Branch Id");
@@ -44,8 +44,8 @@ public class OrderService {
         if (!currentOrders.isEmpty()) {
             BigDecimal totalCost = currentOrders.stream().map(CurrentOrder::getCost).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
             Order order = new Order(Order.currentId,
-                    Storage.dynamicUser,
-                    Storage.dynamicBranch,
+                    Storage.currentUser,
+                    Storage.currentBranch,
                     totalCost,
                     Status.IN_PROGRESS,
                     currentOrders);

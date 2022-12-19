@@ -15,7 +15,7 @@ public class UserInterface {
         if(command==1){
             OrderService.orderProduct();
         } else if (command==2) {
-            Storage.dynamicUser.showMyOrders();
+            Storage.currentUser.showMyOrders();
             userMenu();
         }  else if (command==0) {
             Application.startApplication();

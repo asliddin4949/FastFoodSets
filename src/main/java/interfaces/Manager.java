@@ -5,12 +5,9 @@ import model.Order;
 import model.Status;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Manager {
-
-    static List<Order> inProgress;
 
     public static void managerMenu() {
         System.out.println("'1' - \"set ready products\" '0' - \"exit\"");
@@ -18,7 +15,7 @@ public class Manager {
         int command = scanner.nextInt();
 
         if (command == 1) {
-            setStatus();
+            setOrderStatus();
         } else if (command == 0) {
             Application.startApplication();
         } else {
@@ -28,11 +25,11 @@ public class Manager {
 
     }
 
-    static void setStatus() {
+    static void setOrderStatus() {
         showInProgress();
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
-        Order currentOrder = inProgress.stream().filter(order ->
+        Order currentOrder = Storage.inProgress.stream().filter(order ->
                 order.getOrderId() == id).findFirst().orElse(null);
         if (currentOrder != null) {
             for (Order order : Storage.orders) {
@@ -48,9 +45,9 @@ public class Manager {
     }
 
     static void showInProgress() {
-        inProgress = new ArrayList<>(Storage.orders.stream().filter(order -> order.getStatus().equals(Status.IN_PROGRESS)).toList());
-        if (!inProgress.isEmpty()) {
-            for (Order order : inProgress) {
+        Storage.inProgress = new ArrayList<>(Storage.orders.stream().filter(order -> order.getStatus().equals(Status.IN_PROGRESS)).toList());
+        if (!Storage.inProgress.isEmpty()) {
+            for (Order order : Storage.inProgress) {
                 System.out.println("Order Id: " + order.getOrderId()
                         + "\nBranch: " + order.getBranch());
             }

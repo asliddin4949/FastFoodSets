@@ -17,7 +17,7 @@ public class Admin {
         int command = scanner.nextInt();
 
         if(command==1){
-            Storage.dynamicUser.showUsers();
+            Storage.currentUser.showUsers();
             adminMenu();
         } else if (command==0) {
             Application.startApplication();
@@ -29,9 +29,9 @@ public class Admin {
             product.showProducts();
             adminMenu();
         } else if (command==4) {
-            Storage.dynamicBranch.addBranch();
+            Storage.currentBranch.addBranch();
         } else if (command==5) {
-            Storage.dynamicBranch.showBranches();
+            Storage.currentBranch.showBranches();
             adminMenu();
         } else if (command==6) {
             Order order = new Order();
@@ -45,7 +45,7 @@ public class Admin {
         }
     }
     static void setManager(){
-        Storage.dynamicUser.showUsers();
+        Storage.currentUser.showUsers();
         if(!Storage.users.isEmpty()){
             Scanner scanner = new Scanner(System.in);
             int id = scanner.nextInt();

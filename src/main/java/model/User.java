@@ -11,41 +11,46 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 public class User implements CheckStorage<User> {
-
+    //*****************Fields**********************
     private int userId;
     private String phoneNumber;
     private String name;
     private String password;
     private String role;
 
+    //*******************Behaviors******************************
     @Override
     public String toString() {
-        return  "\nUserId: " + userId +
+        return "\nUserId: " + userId +
                 "\nPhoneNumber: +998 - " + phoneNumber +
                 "\nName: " + name +
                 "\n- - - - - - - - - -";
     }
 
-    public static int currentId = 0;
-
-    {
-        currentId++;
-    }
-    public void showMyOrders(){
-        var orders = Storage.orders.stream().filter(order -> order.getUser().equals(Storage.dynamicUser)).toList();
+    public void showMyOrders() {
+        var orders = Storage.orders.stream().filter(order -> order.getUser().equals(Storage.currentUser)).toList();
         Order order = new Order();
         order.showOrders(orders);
     }
-    public User getDynamicUser(String phoneNumber){
+
+    public User getDynamicUser(String phoneNumber) {
         return Storage.users.stream().filter(user -> user.getPhoneNumber().equals(phoneNumber)).findFirst().orElse(null);
     }
-    public void showUsers(){
+
+    public void showUsers() {
         Storage.users.forEach(System.out::println);
     }
 
     @Override
     public boolean isExist(List<User> list, String phoneNumber) {
         var user1 = list.stream().filter(user -> user.getPhoneNumber().equals(phoneNumber)).findFirst().orElse(null);
-        return user1!=null;
+        return user1 != null;
+    }
+
+    //************************Counter User ID*************************************
+    public static int currentId = 0;
+
+    {
+        currentId++;
     }
 }

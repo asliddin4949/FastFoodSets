@@ -29,13 +29,13 @@ public class Application {
         String phoneNumber = scanner.nextLine();
         System.out.println("Enter Password:");
         String password = scanner.nextLine();
-        Storage.dynamicUser = Storage.dynamicUser.getDynamicUser(phoneNumber);
+        Storage.currentUser = Storage.currentUser.getDynamicUser(phoneNumber);
         if (phoneNumber.equals("admin1") && password.equals("admin1")) {
             Admin.adminMenu();
-        } else if (Storage.dynamicUser == null) {
+        } else if (Storage.currentUser == null) {
             System.out.println("You are not signed up!");
             startApplication();
-        } else if (Storage.dynamicUser.getRole().equals("manager")) {
+        } else if (Storage.currentUser.getRole().equals("manager")) {
             Manager.managerMenu();
         } else {
             UserInterface.userMenu();

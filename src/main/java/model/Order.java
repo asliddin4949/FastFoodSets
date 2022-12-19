@@ -10,16 +10,15 @@ import java.util.List;
 @Setter
 public class Order {
 
+
     int orderId;
     User user;
     Branch branch;
     BigDecimal totalPrice;
     List<CurrentOrder> orderedProducts;
     Status status;
-    public static int currentId = 1;
-    {
-        currentId++;
-    }
+
+    //*******************Behaviors******************************
     public void showOrders(List<Order> list) {
         for (Order order : list) {
             System.out.println("Order ID: " + order.getOrderId()
@@ -51,12 +50,19 @@ public class Order {
 
     @Override
     public String toString() {
-        return "\nOrder - " +orderId+
+        return "\nOrder - " + orderId +
                 "\nUser:" + user +
                 "\nBranch: " + branch +
                 "\nTotalPrice: " + totalPrice +
                 "\nOrderedProducts:" + orderedProducts +
                 "\nStatus: " + status +
                 "\n- - - - - - - - - - - - ";
+    }
+
+    //************************Counter Order ID*************************************
+    public static int currentId = 1;
+
+    {
+        currentId++;
     }
 }
