@@ -1,7 +1,7 @@
 package model;
 
 import data.Storage;
-import interfaces.Admin;
+import Console.AdminConsole;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +27,7 @@ public class Product implements CheckStorage<Product> {
         Product product = new Product();
         if (product.isExist(Storage.products, name)) {
             System.out.println("This Product has already added!");
-            Admin.adminMenu();
+            AdminConsole.adminConsole();
         } else {
             scanner = new Scanner(System.in);
             System.out.println("Price: ");
@@ -37,7 +37,7 @@ public class Product implements CheckStorage<Product> {
             product.setPrice(price);
             Storage.products.add(product);
             System.out.println("Product successfully added!");
-            Admin.adminMenu();
+            AdminConsole.adminConsole();
         }
     }
 

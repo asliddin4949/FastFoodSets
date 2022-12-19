@@ -1,5 +1,6 @@
-package interfaces;
+package interfaces.implement;
 
+import Console.UserConsole;
 import data.Storage;
 import model.CurrentOrder;
 import model.Order;
@@ -10,8 +11,18 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class OrderService {
-    public static void orderProduct() {
+public class Ordering implements interfaces.Ordering {
+
+    private static Ordering ordering;
+
+    public static Ordering getInstance() {
+        if (ordering == null) {
+            ordering = new Ordering();
+        }
+        return ordering;
+    }
+
+    public void orderProduct() {
         Storage.currentBranch.showBranches();
         System.out.println("Choose Branch Id :");
         Scanner scanner = new Scanner(System.in);
@@ -22,10 +33,11 @@ public class OrderService {
             currentOrder();
         } else {
             System.out.println("Wrong Branch Id");
-            UserInterface.userMenu();
+            UserConsole.userConsole();
         }
     }
-    static void currentOrder() {
+
+    public void currentOrder() {
         System.out.println("'1' - \"Continue\" '0' - \"End Order\"");
         Scanner scanner = new Scanner(System.in);
         int command = scanner.nextInt();
@@ -39,10 +51,11 @@ public class OrderService {
         }
     }
 
-    static void endOrder() {
+    public void endOrder() {
         var currentOrders = new ArrayList<>(Storage.currentOrders);
         if (!currentOrders.isEmpty()) {
-            BigDecimal totalCost = currentOrders.stream().map(CurrentOrder::getCost).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
+            BigDecimal totalCost = currentOrders.stream().map(CurrentOrder::getCost)
+                    .reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
             Order order = new Order(Order.currentId,
                     Storage.currentUser,
                     Storage.currentBranch,
@@ -51,14 +64,14 @@ public class OrderService {
                     currentOrders);
             Storage.orders.add(order);
             System.out.println("Thank you for Order! Your Order will be READY soon!");
-            UserInterface.userMenu();
+            UserConsole.userConsole();
         } else {
             System.out.println("Thank you!");
-            UserInterface.userMenu();
+            UserConsole.userConsole();
         }
     }
 
-    static void continueOrder() {
+    public void continueOrder() {
         Product currentProduct = new Product();
         currentProduct = currentProduct.getProduct();
         if (currentProduct != null) {

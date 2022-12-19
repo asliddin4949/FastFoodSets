@@ -1,7 +1,7 @@
 package model;
 
 import data.Storage;
-import interfaces.Admin;
+import Console.AdminConsole;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +34,7 @@ public class Branch implements CheckStorage<Branch> {
         Branch branch = new Branch();
         if (branch.isExist(Storage.branches, name)) {
             System.out.println("This Branch Name has been added!");
-            Admin.adminMenu();
+            AdminConsole.adminConsole();
         } else {
             System.out.println("Enter Address:");
             scanner = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class Branch implements CheckStorage<Branch> {
             branch.setAddress(address);
             Storage.branches.add(branch);
             System.out.println("Branch is successfully added!");
-            Admin.adminMenu();
+            AdminConsole.adminConsole();
         }
     }
 

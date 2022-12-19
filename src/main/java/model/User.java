@@ -16,7 +16,7 @@ public class User implements CheckStorage<User> {
     private String phoneNumber;
     private String name;
     private String password;
-    private String role;
+    private Role role;
 
     //*******************Behaviors******************************
     @Override

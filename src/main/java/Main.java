@@ -1,7 +1,7 @@
-import interfaces.Application;
+import Console.Application;
 
 public class Main {
     public static void main(String[] args) {
-        Application.startApplication();
+        Application.consoleApplication();
     }
 }
