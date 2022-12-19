@@ -3,7 +3,7 @@ package Console;
 import data.Storage;
 
 import interfaces.implement.ManagerService;
-import model.Order;
+import interfaces.implement.OrderingService;
 import model.Product;
 
 import java.util.Scanner;
@@ -34,8 +34,8 @@ public class AdminConsole {
             Storage.currentBranch.showBranches();
             adminConsole();
         } else if (command == 6) {
-            Order order = new Order();
-            order.showOrders(Storage.orders);
+            OrderingService orderingService = OrderingService.getInstance();
+            orderingService.showOrders(Storage.orders);
             adminConsole();
         } else if (command == 7) {
             ManagerService managerService = ManagerService.getInstance();

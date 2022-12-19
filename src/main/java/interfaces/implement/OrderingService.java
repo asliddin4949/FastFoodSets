@@ -2,6 +2,7 @@ package interfaces.implement;
 
 import Console.UserConsole;
 import data.Storage;
+import interfaces.Ordering;
 import model.CurrentOrder;
 import model.Order;
 import model.Product;
@@ -9,17 +10,18 @@ import model.Status;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Ordering implements interfaces.Ordering {
+public class OrderingService implements Ordering {
 
-    private static Ordering ordering;
+    private static OrderingService orderingService;
 
-    public static Ordering getInstance() {
-        if (ordering == null) {
-            ordering = new Ordering();
+    public static OrderingService getInstance() {
+        if (orderingService == null) {
+            orderingService = new OrderingService();
         }
-        return ordering;
+        return orderingService;
     }
 
     public void orderProduct() {
@@ -90,6 +92,23 @@ public class Ordering implements interfaces.Ordering {
         } else {
             System.out.println("Wrong Product Id!");
             currentOrder();
+        }
+    }
+
+    public void showOrders(List<Order> list) {
+        for (Order order : list) {
+            System.out.println("Order ID: " + order.getOrderId()
+                    + "\nBranch: " + order.getBranch()
+                    + "\nUser: " + order.getUser()
+                    + "\nTotal Price: " + order.getTotalPrice()
+                    + "\nStatus: " + order.getStatus()
+                    + "\n- - - - - - - - - - - - - - - - ");
+            for (CurrentOrder orderedProduct : order.getOrderedProducts()) {
+                System.out.println("Product: " + orderedProduct.getProduct()
+                        + "\nQuantity: " + orderedProduct.getQuantity()
+                        + "\nCost: " + orderedProduct.getCost());
+            }
+            System.out.println("* * * * * * * * * * * * * * * * * ");
         }
     }
 

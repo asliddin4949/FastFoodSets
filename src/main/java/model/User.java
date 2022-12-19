@@ -1,6 +1,7 @@
 package model;
 
 import data.Storage;
+import interfaces.implement.OrderingService;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,8 +30,8 @@ public class User implements CheckStorage<User> {
 
     public void showMyOrders() {
         var orders = Storage.orders.stream().filter(order -> order.getUser().equals(Storage.currentUser)).toList();
-        Order order = new Order();
-        order.showOrders(orders);
+        OrderingService orderingService = OrderingService.getInstance();
+        orderingService.showOrders(orders);
     }
 
     public User getDynamicUser(String phoneNumber) {
