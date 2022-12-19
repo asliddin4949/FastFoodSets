@@ -19,10 +19,9 @@ public class CurrentOrder {
     //*******************Behaviors******************************
     @Override
     public String toString() {
-        return
-                "\nProduct: " + product +
-                        "\nQuantity: " + quantity +
-                        "\nCost: " + cost +
-                        "\n- - - - - - - - - - - -";
+        return  "\nProduct: " + product +
+                "\nQuantity: " + quantity +
+                "\nCost: " + cost +
+                "\n- - - - - - - - - - - -";
     }
 }

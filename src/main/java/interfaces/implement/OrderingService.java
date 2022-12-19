@@ -7,7 +7,6 @@ import model.CurrentOrder;
 import model.Order;
 import model.Product;
 import model.Status;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,9 +103,7 @@ public class OrderingService implements Ordering {
                     + "\nStatus: " + order.getStatus()
                     + "\n- - - - - - - - - - - - - - - - ");
             for (CurrentOrder orderedProduct : order.getOrderedProducts()) {
-                System.out.println("Product: " + orderedProduct.getProduct()
-                        + "\nQuantity: " + orderedProduct.getQuantity()
-                        + "\nCost: " + orderedProduct.getCost());
+                System.out.println(orderedProduct);
             }
             System.out.println("* * * * * * * * * * * * * * * * * ");
         }
