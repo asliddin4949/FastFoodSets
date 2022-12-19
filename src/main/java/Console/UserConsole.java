@@ -25,6 +25,6 @@ public class UserConsole {
             System.out.println("Wrong Command!");
             userConsole();
         }
-
     }
+
 }
