@@ -20,8 +20,27 @@ public class Order {
     {
         currentId++;
     }
+    public void showOrders(List<Order> list) {
+        for (Order order : list) {
+            System.out.println("Order ID: " + order.getOrderId()
+                    + "\nBranch: " + order.getBranch()
+                    + "\nUser: " + order.getUser()
+                    + "\nTotal Price: " + order.getTotalPrice()
+                    + "\nStatus: " + order.getStatus()
+                    + "\n- - - - - - - - - - - - - - - - ");
+            for (CurrentOrder orderedProduct : order.getOrderedProducts()) {
+                System.out.println("Product: " + orderedProduct.getProduct()
+                        + "\nQuantity: " + orderedProduct.getQuantity()
+                        + "\nCost: " + orderedProduct.getCost());
+            }
+            System.out.println("* * * * * * * * * * * * * * * * * ");
+        }
+    }
 
-    public Order(int orderId, User user, Branch branch, BigDecimal totalPrice, Status status,List<CurrentOrder> orderedProducts) {
+    public Order() {
+    }
+
+    public Order(int orderId, User user, Branch branch, BigDecimal totalPrice, Status status, List<CurrentOrder> orderedProducts) {
         this.orderId = orderId;
         this.user = user;
         this.branch = branch;

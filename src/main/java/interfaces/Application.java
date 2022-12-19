@@ -1,7 +1,7 @@
 package interfaces;
 
 
-import service.UserService;
+import data.Storage;
 
 import java.util.Scanner;
 
@@ -29,13 +29,13 @@ public class Application {
         String phoneNumber = scanner.nextLine();
         System.out.println("Enter Password:");
         String password = scanner.nextLine();
-        UserService.dynamicUser = UserService.getDynamicUser(phoneNumber);
+        Storage.dynamicUser = Storage.dynamicUser.getDynamicUser(phoneNumber);
         if (phoneNumber.equals("admin1") && password.equals("admin1")) {
             Admin.adminMenu();
-        } else if (UserService.dynamicUser == null) {
+        } else if (Storage.dynamicUser == null) {
             System.out.println("You are not signed up!");
             startApplication();
-        } else if (UserService.dynamicUser.getRole().equals("manager")) {
+        } else if (Storage.dynamicUser.getRole().equals("manager")) {
             Manager.managerMenu();
         } else {
             UserInterface.userMenu();

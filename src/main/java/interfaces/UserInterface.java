@@ -1,8 +1,6 @@
 package interfaces;
 
 import data.Storage;
-import service.OrderService;
-import service.UserService;
 
 import java.util.Scanner;
 
@@ -17,7 +15,7 @@ public class UserInterface {
         if(command==1){
             OrderService.orderProduct();
         } else if (command==2) {
-            UserService.showMyOrders();
+            Storage.dynamicUser.showMyOrders();
             userMenu();
         }  else if (command==0) {
             Application.startApplication();

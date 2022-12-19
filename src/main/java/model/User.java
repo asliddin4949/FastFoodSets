@@ -23,7 +23,6 @@ public class User implements CheckStorage<User> {
         return  "\nUserId: " + userId +
                 "\nPhoneNumber: +998 - " + phoneNumber +
                 "\nName: " + name +
-                "\nRole: " + role +
                 "\n- - - - - - - - - -";
     }
 
@@ -31,6 +30,17 @@ public class User implements CheckStorage<User> {
 
     {
         currentId++;
+    }
+    public void showMyOrders(){
+        var orders = Storage.orders.stream().filter(order -> order.getUser().equals(Storage.dynamicUser)).toList();
+        Order order = new Order();
+        order.showOrders(orders);
+    }
+    public User getDynamicUser(String phoneNumber){
+        return Storage.users.stream().filter(user -> user.getPhoneNumber().equals(phoneNumber)).findFirst().orElse(null);
+    }
+    public void showUsers(){
+        Storage.users.forEach(System.out::println);
     }
 
     @Override

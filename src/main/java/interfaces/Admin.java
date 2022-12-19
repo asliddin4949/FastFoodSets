@@ -2,11 +2,10 @@ package interfaces;
 
 import data.Storage;
 
+import model.Order;
+import model.Product;
 import model.User;
-import service.BranchService;
-import service.OrderService;
-import service.ProductService;
-import service.UserService;
+
 import java.util.Scanner;
 
 public class Admin {
@@ -18,22 +17,25 @@ public class Admin {
         int command = scanner.nextInt();
 
         if(command==1){
-            UserService.showUsers();
+            Storage.dynamicUser.showUsers();
             adminMenu();
         } else if (command==0) {
             Application.startApplication();
         } else if (command==2) {
-            ProductService.addProduct();
+            Product product = new Product();
+            product.addProduct();
         } else if (command==3) {
-            ProductService.showProducts();
+            Product product = new Product();
+            product.showProducts();
             adminMenu();
         } else if (command==4) {
-            BranchService.addBranch();
+            Storage.dynamicBranch.addBranch();
         } else if (command==5) {
-            BranchService.showBranches();
+            Storage.dynamicBranch.showBranches();
             adminMenu();
         } else if (command==6) {
-            OrderService.showOrders(Storage.orders);
+            Order order = new Order();
+            order.showOrders(Storage.orders);
             adminMenu();
         } else if (command==7) {
             setManager();
@@ -43,7 +45,7 @@ public class Admin {
         }
     }
     static void setManager(){
-        UserService.showUsers();
+        Storage.dynamicUser.showUsers();
         if(!Storage.users.isEmpty()){
             Scanner scanner = new Scanner(System.in);
             int id = scanner.nextInt();
