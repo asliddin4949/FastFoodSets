@@ -18,7 +18,6 @@ public class Order {
     List<CurrentOrder> orderedProducts;
     Status status;
 
-    //*******************Behaviors******************************
 
     public Order(int orderId, User user, Branch branch, BigDecimal totalPrice, Status status, List<CurrentOrder> orderedProducts) {
         this.orderId = orderId;
@@ -40,8 +39,8 @@ public class Order {
                 "\n- - - - - - - - - - - - ";
     }
 
-    //************************Counter Order ID*************************************
     public static int currentId = 1;
+
     {
         currentId++;
     }

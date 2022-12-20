@@ -11,15 +11,14 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class CurrentOrder {
 
-    //********************Fields**********************
+
     Product product;
     double quantity;
     BigDecimal cost;
 
-    //*******************Behaviors******************************
     @Override
     public String toString() {
-        return  "\nProduct: " + product +
+        return "\nProduct: " + product +
                 "\nQuantity: " + quantity +
                 "\nCost: " + cost +
                 "\n- - - - - - - - - - - -";

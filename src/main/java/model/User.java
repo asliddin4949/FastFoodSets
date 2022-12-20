@@ -7,15 +7,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User  {
-    //*****************Fields**********************
+public class User {
+
     private int userId;
     private String phoneNumber;
     private String name;
     private String password;
     private Role role;
 
-    //*******************Behaviors******************************
+
     @Override
     public String toString() {
         return "\nUserId: " + userId +
@@ -34,6 +34,7 @@ public class User  {
 
     //************************Counter User ID*************************************
     public static int currentId = 1;
+
     {
         currentId++;
     }

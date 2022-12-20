@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @EqualsAndHashCode
 public class Product {
-    //********************Fields**********************
+
     int id;
     String name;
     BigDecimal price;
@@ -24,7 +24,6 @@ public class Product {
                 "\n- - - - - - - - - - ";
     }
 
-    //************************Counter Product ID*************************************
     public static int currentId = 1;
 
     {
