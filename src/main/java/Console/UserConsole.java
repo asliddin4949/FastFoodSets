@@ -1,6 +1,7 @@
 package Console;
 
 import data.Storage;
+import interfaces.Ordering;
 import interfaces.implement.OrderingService;
 
 import java.util.Scanner;
@@ -14,8 +15,8 @@ public class UserConsole {
         int command = scanner.nextInt();
 
         if (command == 1) {
-            OrderingService orderingService = OrderingService.getInstance();
-            orderingService.orderProduct();
+            Ordering ordering = OrderingService.getInstance();
+            ordering.orderProduct();
         } else if (command == 2) {
             Storage.currentUser.showMyOrders();
             userConsole();

@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    public static User currentUser;       //*****  Signed User
+         //*****  Signed User
+    public static User currentUser;
+    public static User admin = new User("admin","admin1");
     public static Branch currentBranch;   //***** Ordering Branch
     public static List<Order> inProgress;  //***** InProgress Orders
     public static List<User> users = new ArrayList<>();

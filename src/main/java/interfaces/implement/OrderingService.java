@@ -7,6 +7,7 @@ import model.CurrentOrder;
 import model.Order;
 import model.Product;
 import model.Status;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class OrderingService implements Ordering {
         }
     }
 
-    public void currentOrder() {
+    void currentOrder() {
         System.out.println("'1' - \"Continue\" '0' - \"End Order\"");
         Scanner scanner = new Scanner(System.in);
         int command = scanner.nextInt();
@@ -52,7 +53,7 @@ public class OrderingService implements Ordering {
         }
     }
 
-    public void endOrder() {
+    void endOrder() {
         var currentOrders = new ArrayList<>(Storage.currentOrders);
         if (!currentOrders.isEmpty()) {
             BigDecimal totalCost = currentOrders.stream().map(CurrentOrder::getCost)
@@ -64,6 +65,7 @@ public class OrderingService implements Ordering {
                     Status.IN_PROGRESS,
                     currentOrders);
             Storage.orders.add(order);
+            Order.currentId++;
             System.out.println("Thank you for Order! Your Order will be READY soon!");
             UserConsole.userConsole();
         } else {
@@ -72,7 +74,7 @@ public class OrderingService implements Ordering {
         }
     }
 
-    public void continueOrder() {
+    void continueOrder() {
         Product currentProduct = new Product();
         currentProduct = currentProduct.getProduct();
         if (currentProduct != null) {

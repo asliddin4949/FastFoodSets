@@ -1,8 +1,10 @@
 package interfaces;
 
+import model.User;
+
 public interface SignInSignUp {
 
-    void signIn();
+    User signIn();
 
     void signUp();
 }

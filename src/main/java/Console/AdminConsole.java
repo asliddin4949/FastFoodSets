@@ -2,8 +2,12 @@ package Console;
 
 import data.Storage;
 
-import interfaces.implement.ManagerService;
-import interfaces.implement.OrderingService;
+import interfaces.Delete;
+import interfaces.Manager;
+import interfaces.Ordering;
+import interfaces.Update;
+import interfaces.implement.*;
+import model.Branch;
 import model.Product;
 
 import java.util.Scanner;
@@ -11,11 +15,13 @@ import java.util.Scanner;
 public class AdminConsole {
 
     public static void adminConsole() {
-        System.out.println("'1' - \"Users\"  '2' - \"Add Product\"  '3' - \"Show Products\"  '0' - \"Exit\""
-                + "\n'4' - \"Add Branch\"  '5' - \"Show Branches\"  '6' - \"Show Orders\" '7' - \"Set Manager\"");
+        System.out.println("""
+                '1' - "Users"  '2' - "Add Product"  '3' - "Show Products"  '0' - "Exit"
+                '4' - "Add Branch"  '5' - "Show Branches"  '6' - "Show Orders"\s
+                '7' - "Set Manager" '8' - "Update Branch Info" '9' - "Update Product Info"
+                '10' - "Delete Branch"  '11' - "Delete Product\"""");
         Scanner scanner = new Scanner(System.in);
         int command = scanner.nextInt();
-
         if (command == 1) {
             Storage.currentUser.showUsers();
             adminConsole();
@@ -29,17 +35,36 @@ public class AdminConsole {
             product.showProducts();
             adminConsole();
         } else if (command == 4) {
-            Storage.currentBranch.addBranch();
+            Branch branch = new Branch();
+            branch.addBranch();
+            adminConsole();
         } else if (command == 5) {
-            Storage.currentBranch.showBranches();
+            Branch branch = new Branch();
+            branch.showBranches();
             adminConsole();
         } else if (command == 6) {
-            OrderingService orderingService = OrderingService.getInstance();
-            orderingService.showOrders(Storage.orders);
+            Ordering ordering = OrderingService.getInstance();
+            ordering.showOrders(Storage.orders);
             adminConsole();
         } else if (command == 7) {
-            ManagerService managerService = ManagerService.getInstance();
-            managerService.setManager();
+            Manager manager = ManagerService.getInstance();
+            manager.setManager();
+        } else if (command == 8) {
+            Update update = UpdateBranch.getInstance();
+            update.updateBranch();
+            adminConsole();
+        } else if (command == 9) {
+            Update update = UpdateProduct.getInstance();
+            update.updateProduct();
+            adminConsole();
+        } else if (command == 10) {
+            Delete delete = DeleteBranch.getInstance();
+            delete.deleteBranch();
+            adminConsole();
+        } else if (command == 11) {
+            Delete delete = DeleteProduct.getInstance();
+            delete.deleteProduct();
+            adminConsole();
         } else {
             System.out.println("Wrong command!");
             adminConsole();

@@ -34,12 +34,16 @@ public class User implements CheckStorage<User> {
         orderingService.showOrders(orders);
     }
 
-    public User getDynamicUser(String phoneNumber) {
-        return Storage.users.stream().filter(user -> user.getPhoneNumber().equals(phoneNumber)).findFirst().orElse(null);
-    }
-
     public void showUsers() {
         Storage.users.forEach(System.out::println);
+    }
+
+    public User() {
+    }
+
+    public User(String phoneNumber, String password) {
+        this.phoneNumber = phoneNumber;
+        this.password = password;
     }
 
     @Override
@@ -49,9 +53,7 @@ public class User implements CheckStorage<User> {
     }
 
     //************************Counter User ID*************************************
-    public static int currentId = 0;
+    public static int currentId = 1;
 
-    {
-        currentId++;
-    }
+
 }

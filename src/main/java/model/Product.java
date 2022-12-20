@@ -36,6 +36,7 @@ public class Product implements CheckStorage<Product> {
             product.setName(name);
             product.setPrice(price);
             Storage.products.add(product);
+            currentId++;
             System.out.println("Product successfully added!");
             AdminConsole.adminConsole();
         }
@@ -69,9 +70,6 @@ public class Product implements CheckStorage<Product> {
     }
 
     //************************Counter Product ID*************************************
-    public static int currentId = 0;
+    public static int currentId = 1;
 
-    {
-        currentId++;
-    }
 }

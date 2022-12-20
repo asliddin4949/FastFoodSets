@@ -1,8 +1,5 @@
 package interfaces.implement;
 
-import Console.AdminConsole;
-import Console.Application;
-import Console.UserConsole;
 import data.Storage;
 import interfaces.SignInSignUp;
 import model.Role;
@@ -43,6 +40,7 @@ public class Registration implements SignInSignUp {
                 user.setPassword(password);
                 user.setPhoneNumber(phoneNumber);
                 user.setRole(Role.USER);
+                User.currentId++;
                 Storage.users.add(user);
 
             } else {
@@ -58,25 +56,19 @@ public class Registration implements SignInSignUp {
     }
 
     @Override
-    public void signIn() {
+    public User signIn() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Phone Number (without Country Code): ");
         String phoneNumber = scanner.nextLine();
         System.out.println("Enter Password:");
         String password = scanner.nextLine();
-        Storage.currentUser = Storage.currentUser.getDynamicUser(phoneNumber);
-        if (phoneNumber.equals("admin1") && password.equals("admin1")) {
-            AdminConsole.adminConsole();
-        } else if (Storage.currentUser == null) {
-            System.out.println("You are not signed up!");
-            Application.consoleApplication();
-        } else if (Storage.currentUser.getRole().equals(Role.MANAGER)) {
-            ManagerService managerService = ManagerService.getInstance();
-            managerService.managerMenu();
-        } else {
-            UserConsole.userConsole();
+        if(phoneNumber.equals("admin1")&&password.equals("admin1")){
+            return Storage.admin;
         }
+        return Storage.users.stream().filter(user1 ->
+                        user1.getPhoneNumber().equals(phoneNumber) && user1.getPassword().equals(password))
+                .findFirst().orElse(null);
 
     }
 
