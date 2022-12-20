@@ -72,7 +72,8 @@ public class ManagerService implements Manager {
     }
 
     public void setManager() {
-        Storage.currentUser.showUsers();
+        UserService userService = UserService.getInstance();
+        userService.showUsers();
         if (!Storage.users.isEmpty()) {
             Scanner scanner = new Scanner(System.in);
             int id = scanner.nextInt();

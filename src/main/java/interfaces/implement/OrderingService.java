@@ -25,7 +25,9 @@ public class OrderingService implements Ordering {
     }
 
     public void orderProduct() {
-        Storage.currentBranch.showBranches();
+
+        BranchService branchService = BranchService.getInstance();
+        branchService.show();
         System.out.println("Choose Branch Id :");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
@@ -65,7 +67,6 @@ public class OrderingService implements Ordering {
                     Status.IN_PROGRESS,
                     currentOrders);
             Storage.orders.add(order);
-            Order.currentId++;
             System.out.println("Thank you for Order! Your Order will be READY soon!");
             UserConsole.userConsole();
         } else {
@@ -75,8 +76,8 @@ public class OrderingService implements Ordering {
     }
 
     void continueOrder() {
-        Product currentProduct = new Product();
-        currentProduct = currentProduct.getProduct();
+        ProductService productService = ProductService.getInstance();
+        Product currentProduct = productService.getProduct();
         if (currentProduct != null) {
             System.out.println("Enter Quantity:");
             Scanner scanner = new Scanner(System.in);

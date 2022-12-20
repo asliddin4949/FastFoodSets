@@ -1,17 +1,13 @@
 package model;
 
-import data.Storage;
-import interfaces.implement.OrderingService;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User implements CheckStorage<User> {
+public class User  {
     //*****************Fields**********************
     private int userId;
     private String phoneNumber;
@@ -28,16 +24,6 @@ public class User implements CheckStorage<User> {
                 "\n- - - - - - - - - -";
     }
 
-    public void showMyOrders() {
-        var orders = Storage.orders.stream().filter(order -> order.getUser().equals(Storage.currentUser)).toList();
-        OrderingService orderingService = OrderingService.getInstance();
-        orderingService.showOrders(orders);
-    }
-
-    public void showUsers() {
-        Storage.users.forEach(System.out::println);
-    }
-
     public User() {
     }
 
@@ -46,14 +32,11 @@ public class User implements CheckStorage<User> {
         this.password = password;
     }
 
-    @Override
-    public boolean isExist(List<User> list, String phoneNumber) {
-        var user1 = list.stream().filter(user -> user.getPhoneNumber().equals(phoneNumber)).findFirst().orElse(null);
-        return user1 != null;
-    }
-
     //************************Counter User ID*************************************
     public static int currentId = 1;
+    {
+        currentId++;
+    }
 
 
 }

@@ -2,13 +2,9 @@ package Console;
 
 import data.Storage;
 
-import interfaces.Delete;
-import interfaces.Manager;
-import interfaces.Ordering;
-import interfaces.Update;
+import interfaces.*;
 import interfaces.implement.*;
-import model.Branch;
-import model.Product;
+
 
 import java.util.Scanner;
 
@@ -22,25 +18,24 @@ public class AdminConsole {
                 '10' - "Delete Branch"  '11' - "Delete Product\"""");
         Scanner scanner = new Scanner(System.in);
         int command = scanner.nextInt();
+        ProductService productService = ProductService.getInstance();
+        UserService userService = UserService.getInstance();
+        BranchService branchService = BranchService.getInstance();
         if (command == 1) {
-            Storage.currentUser.showUsers();
+            userService.showUsers();
             adminConsole();
         } else if (command == 0) {
             Application.consoleApplication();
         } else if (command == 2) {
-            Product product = new Product();
-            product.addProduct();
+            productService.add();
         } else if (command == 3) {
-            Product product = new Product();
-            product.showProducts();
+            productService.show();
             adminConsole();
         } else if (command == 4) {
-            Branch branch = new Branch();
-            branch.addBranch();
+            branchService.add();
             adminConsole();
         } else if (command == 5) {
-            Branch branch = new Branch();
-            branch.showBranches();
+            branchService.show();
             adminConsole();
         } else if (command == 6) {
             Ordering ordering = OrderingService.getInstance();
@@ -50,20 +45,16 @@ public class AdminConsole {
             Manager manager = ManagerService.getInstance();
             manager.setManager();
         } else if (command == 8) {
-            Update update = UpdateBranch.getInstance();
-            update.update();
+            branchService.update();
             adminConsole();
         } else if (command == 9) {
-            Update update = UpdateProduct.getInstance();
-            update.update();
+            productService.update();
             adminConsole();
         } else if (command == 10) {
-            Delete delete = DeleteBranch.getInstance();
-            delete.delete();
+            branchService.delete();
             adminConsole();
         } else if (command == 11) {
-            Delete delete = DeleteProduct.getInstance();
-            delete.delete();
+            productService.delete();
             adminConsole();
         } else {
             System.out.println("Wrong command!");

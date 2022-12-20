@@ -3,6 +3,7 @@ package Console;
 import data.Storage;
 import interfaces.Ordering;
 import interfaces.implement.OrderingService;
+import interfaces.implement.UserService;
 
 import java.util.Scanner;
 
@@ -18,7 +19,8 @@ public class UserConsole {
             Ordering ordering = OrderingService.getInstance();
             ordering.orderProduct();
         } else if (command == 2) {
-            Storage.currentUser.showMyOrders();
+            UserService userService = UserService.getInstance();
+            userService.showMyOrders();
             userConsole();
         } else if (command == 0) {
             Application.consoleApplication();

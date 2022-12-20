@@ -42,6 +42,8 @@ public class Order {
 
     //************************Counter Order ID*************************************
     public static int currentId = 1;
-
+    {
+        currentId++;
+    }
 
 }
