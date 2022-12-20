@@ -16,8 +16,7 @@ public class DeleteProduct implements Delete {
         return deleteProduct;
     }
 
-    @Override
-    public void deleteProduct() {
+    public void delete() {
         Product product = new Product();
         product = product.getProduct();
         if (product != null) {

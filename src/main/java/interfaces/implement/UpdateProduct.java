@@ -18,7 +18,7 @@ public class UpdateProduct implements Update {
     }
 
     @Override
-    public void updateProduct() {
+    public void update() {
         Product product = new Product();
         product = product.getProduct();
         if (product != null) {

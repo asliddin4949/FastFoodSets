@@ -51,19 +51,19 @@ public class AdminConsole {
             manager.setManager();
         } else if (command == 8) {
             Update update = UpdateBranch.getInstance();
-            update.updateBranch();
+            update.update();
             adminConsole();
         } else if (command == 9) {
             Update update = UpdateProduct.getInstance();
-            update.updateProduct();
+            update.update();
             adminConsole();
         } else if (command == 10) {
             Delete delete = DeleteBranch.getInstance();
-            delete.deleteBranch();
+            delete.delete();
             adminConsole();
         } else if (command == 11) {
             Delete delete = DeleteProduct.getInstance();
-            delete.deleteProduct();
+            delete.delete();
             adminConsole();
         } else {
             System.out.println("Wrong command!");

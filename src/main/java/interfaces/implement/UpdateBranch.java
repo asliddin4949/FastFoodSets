@@ -18,7 +18,7 @@ public class UpdateBranch implements Update {
     }
 
     @Override
-    public void updateBranch() {
+    public void update() {
         Branch branch = chooseBranch();
         if (branch != null) {
             while (true) {

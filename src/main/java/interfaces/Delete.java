@@ -1,10 +1,6 @@
 package interfaces;
 
 public interface Delete {
-    default void deleteBranch(){
+   void delete();
 
-    }
-    default void deleteProduct(){
-
-    }
 }

@@ -18,7 +18,7 @@ public class DeleteBranch implements Delete {
     }
 
     @Override
-    public void deleteBranch() {
+    public void delete() {
         Branch branch = new Branch();
         branch.showBranches();
         System.out.println("Enter Branch Id:");
